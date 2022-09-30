@@ -39,8 +39,14 @@ apt-mark hold kubelet kubeadm kubectl
 systemctl enable kubelet && systemctl start kubelet
 apt-get install firewalld
 apt install selinux-utils
-sudo setenforce 0
-sudo sed -i ‘s/^SELINUX=enforcing$/SELINUX=permissive/’ /etc/selinux/config
-sleep 5
 sudo sed -i '/swap/d' /etc/fstab
 sudo swapoff -a
+sleep 5
+sudo firewall-cmd --permanent --add-port=6443/tcp
+sudo firewall-cmd --permanent --add-port=2379-2380/tcp
+sudo firewall-cmd --permanent --add-port=10250/tcp
+sudo firewall-cmd --permanent --add-port=10251/tcp
+sudo firewall-cmd --permanent --add-port=10252/tcp
+sudo firewall-cmd --permanent --add-port=10255/tcp
+sudo setenforce 0
+sudo sed -i ‘s/^SELINUX=enforcing$/SELINUX=permissive/’ /etc/selinux/config
