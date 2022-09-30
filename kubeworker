@@ -21,6 +21,8 @@ apt update
 sleep 5
 apt install -y containerd.io
 sleep 5
+mkdir -p /etc/containerd
+sleep 20
 containerd config default>/etc/containerd/config.toml
 sed -e 's/SystemdCgroup = false/SystemdCgroup = true/g' -i /etc/containerd/config.toml
 systemctl daemon-reload
