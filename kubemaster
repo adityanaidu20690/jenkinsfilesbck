@@ -39,9 +39,10 @@ apt-get install -y kubelet=${KUBE_VERSION}-00 kubeadm=${KUBE_VERSION}-00 kubectl
 sleep 5
 apt-mark hold kubelet kubeadm kubectl 
 systemctl enable kubelet && systemctl start kubelet
+kubeadm init --kubernetes-version=${KUBE_VERSION}
+kubectl apply -f "https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml"
 apt-get install firewalld
 apt install selinux-utils
-kubeadm init --kubernetes-version=${KUBE_VERSION}
 #sudo sed -i '/swap/d' /etc/fstab
 #sudo swapoff -a
 #sleep 5
