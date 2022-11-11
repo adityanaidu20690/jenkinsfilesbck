@@ -25,6 +25,9 @@ commands:
    17  cd /usr/lib/systemd/system/
    18  ll -ltrh
    19  vi jenkins.service
+   change the path in jenkins_home
+   and work_dir 
    20  vi /etc/sysconfig/jenkins
+   change the jenkins_home
    21  yum update -y && yum upgrade -y && yum upgrade jenkins
    22  systemctl start jenkins&&systemctl enable jenkins
