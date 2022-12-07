@@ -41,6 +41,10 @@ apt-mark hold kubelet kubeadm kubectl
 systemctl enable kubelet && systemctl start kubelet
 kubeadm init --kubernetes-version=${KUBE_VERSION}
 kubectl apply -f "https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml"
+#####################
+##weave network CNI ##
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+#####################
 apt-get install firewalld
 apt install selinux-utils
 #sudo sed -i '/swap/d' /etc/fstab
